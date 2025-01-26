@@ -113,8 +113,6 @@ export const jobList = async (req, res) => {
     }
 };
 
-import JobPosting from '../models/jobPosting.js';
-
 export const jobRelevanceScoreUpvote = async (req, res) => {
     try {
         const { id } = req.params;
