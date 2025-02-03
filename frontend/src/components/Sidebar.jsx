@@ -1,4 +1,5 @@
 import React from 'react';
+import LogoutButton  from './LogoutButton.jsx';
 
 const Sidebar = () => {
   return (
@@ -24,7 +25,7 @@ const Sidebar = () => {
 
       {/* Logout Button */}
       <div className="mb-8">
-        <button className="w-full text-lg font-lato text-white bg-[#05F2DB] py-3 hover:bg-[#05F2C7]">Logout</button>
+        <LogoutButton/>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 //importing all the necessary dependencies 
 import express from "express";
 import {jobCreate,jobUpdate,jobRelevanceScoreUpvote,jobRelevanceScoreDownvote,jobDelete,jobList} from "../controllers/jobs.controllers.js"
-import { alumniList } from "../controllers/alumni.controller.js";
+import { alumniList } from "../controllers/alumni.controllers.js";
 import { ViewRes ,updateProfile , deleteOffCampus ,addOffCampus,updateStatus  } from "../controllers/studentview.js";
 
 //using the router
@@ -18,10 +18,10 @@ router.get('/jobs/downvote/:id',jobRelevanceScoreDownvote)
 
 // getting student view
 router.get('/student/:ID', ViewRes);
-router.update('/student/:ID', updateProfile);
+router.put('/student/:ID', updateProfile);
 router.delete('/student/:ID', deleteOffCampus);
-router.update('/student/:ID', addOffCampus);
-router.update('/student/:ID', updateStatus);
+router.put('/student/:ID', addOffCampus);
+router.put('/student/:ID', updateStatus);
 
 
 //alumni routes
