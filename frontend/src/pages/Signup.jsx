@@ -70,7 +70,7 @@ function Signup() {
                     </label>
                     <select className="w-full input input-bordered h-10" value={inputs.role} onChange={(e)=>setInputs({...inputs,role:e.target.value})}>
                         <option value="">Select Role</option>
-                        <option value="student">User</option>
+                        <option value="student">Student</option>
                         <option value="recruiter">Recruiter</option>
                         <option value="admin">Admin</option>
                     </select>

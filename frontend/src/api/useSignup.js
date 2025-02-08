@@ -11,7 +11,7 @@ const useSignup = () => {
       if(!success) return;
       setLoading(true);
     try{
-       const res= await fetch('http://localhost:3000/api/auth/logout',{
+       const res= await fetch('http://localhost:3000/api/auth/signup',{
        method: 'POST',
        headers: {
             'Content-Type': 'application/json'
@@ -19,10 +19,11 @@ const useSignup = () => {
        body: JSON.stringify({name,email,password,role})
       })
       const data = await res.json();
-      if(data.error) {throw new Error(data.error);}
+      if(!res.ok) throw new Error(data.message);
        
       localStorage.setItem('ccps-user',JSON.stringify(data));
       setAuthUser(data);
+      toast.success("Signup successful!");
     } 
     catch(error){
         toast.error(error.message);

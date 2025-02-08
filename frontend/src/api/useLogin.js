@@ -19,8 +19,8 @@ import {useAuthContext} from '../context/AuthContext.jsx'
             
             })
             const data = await res.json();
-            if(data.error){
-                throw new Error(data.error)
+            if(!res.ok){
+                throw new Error(data.message)
             }
             localStorage.setItem("ccps-user", JSON.stringify(data))
             setAuthUser(data)
