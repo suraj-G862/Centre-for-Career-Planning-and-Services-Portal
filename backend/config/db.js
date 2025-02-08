@@ -6,7 +6,8 @@ const connectDB = async () => {
   try {
     await mongoose.connect(
       //using the mongodb uri
-      "mongodb+srv://openlake:VsEsw0XB9s9a2Clh@webwave2.h1neo.mongodb.net/"
+      // "mongodb+srv://openlake:VsEsw0XB9s9a2Clh@webwave2.h1neo.mongodb.net/"
+      "mongodb://localhost:27017/ccps-portal",
     );
     console.log("MongoDB database is connected successfully");
   } catch (error) {
