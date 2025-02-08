@@ -17,7 +17,15 @@ const userSchema = new mongoose.Schema({
     role:{
         type:String,
         required:true
-    }
+    },
+    isVerified: {
+        type: Boolean,
+        default: false
+    },
+    resetPasswordToken : String,
+    resetPasswordTokenExpiresAt: Date,
+    verificationToken: String,
+    verificationTokenExpiresAt: Date,
 })
 
 const User = mongoose.model("User",userSchema);
