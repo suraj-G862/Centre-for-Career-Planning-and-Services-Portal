@@ -7,7 +7,7 @@ const connectDB = async () => {
     await mongoose.connect(
       //using the mongodb uri
       // "mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.3.8"
-      "mongodb://localhost:27017/ccps-portal-suraj",
+      "mongodb://localhost:27017/ccps-portal-krishna",
     );
     console.log("MongoDB database is connected successfully");
   } catch (error) {
