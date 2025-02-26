@@ -19,7 +19,13 @@ export const signup = async (req, res) => {
 
         generateTokenAndSetCookie(newUser._id, res);
 
-        res.status(201).json({ message: "User created successfully" });
+        res.status(200).json({
+            _id: newUser._id,
+            name: newUser.name,
+            email: newUser.email,
+            role: newUser.role,
+        });
+        
 
     } catch (e) {
         console.error("Error in auth controller", e);

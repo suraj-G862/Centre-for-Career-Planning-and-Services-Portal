@@ -4,6 +4,7 @@ import cors from "cors";
 import connectDB from "./config/db.js";
 import router from "./routes/router.js";
 import authRoutes from "./routes/auth.routes.js";
+import statsRouter from "./routes/stats.routes.js";
 
 
 //dotenv configurations
@@ -31,6 +32,7 @@ const port = 3000;
 //apis
 app.use("/api", router);
 app.use("/api/auth",authRoutes);
+app.use("/api/stats",statsRouter)
 
 //listener
 app.listen(port, () => {
