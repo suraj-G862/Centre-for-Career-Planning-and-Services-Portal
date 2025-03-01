@@ -1,24 +1,27 @@
 //importing all the necessary dependencies
 import express from "express";
 import cors from "cors";
+import cookieParser from 'cookie-parser';
 import connectDB from "./config/db.js";
 import router from "./routes/router.js";
 import authRoutes from "./routes/auth.routes.js";
+import threadRoutes from "./routes/thread.routes.js";
 
 
 //dotenv configurations
 import dotenv from "dotenv";
-dotenv.config({});
+dotenv.config();
 
 
 const app = express();
 
 app.use(cors({
-  origin: "http://localhost:5173", 
-  credentials: true                
+  origin: "http://localhost:5173",
+  credentials: true
 }));
 
 //middleware
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -30,7 +33,8 @@ const port = 3000;
 
 //apis
 app.use("/api", router);
-app.use("/api/auth",authRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/threads", threadRoutes);
 
 //listener
 app.listen(port, () => {

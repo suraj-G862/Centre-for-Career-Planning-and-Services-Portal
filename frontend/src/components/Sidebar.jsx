@@ -1,5 +1,5 @@
 import React from 'react';
-import LogoutButton  from './LogoutButton.jsx';
+import LogoutButton from './LogoutButton.jsx';
 
 const Sidebar = () => {
   return (
@@ -16,8 +16,9 @@ const Sidebar = () => {
 
         {/* Navigation Links */}
         <div className="flex flex-col mt-8">
-          <a href="home" className="text-lg font-montserrat text-[#05F2C7] py-3 pl-6 hover:bg-[#03658C]">Home</a>
-          <a href="profile" className="text-lg font-montserrat text-[#05F2C7] py-3 pl-6 hover:bg-[#03658C]">Profile</a>
+          <a href="/" className="text-lg font-montserrat text-[#05F2C7] py-3 pl-6 hover:bg-[#03658C]">Home</a>
+          <a href="/dashboard" className="text-lg font-montserrat text-[#05F2C7] py-3 pl-6 hover:bg-[#03658C]">Dashboard</a>
+          <a href="/discussion-forum" className="text-lg font-montserrat text-[#05F2C7] py-3 pl-6 hover:bg-[#03658C]">Discussion Forum</a>
           <a href="applications" className="text-lg font-montserrat text-[#05F2C7] py-3 pl-6 hover:bg-[#03658C]">Applications</a>
           <a href="saved-applications" className="text-lg font-montserrat text-[#05F2C7] py-3 pl-6 hover:bg-[#03658C]">Saved Applications</a>
         </div>
@@ -25,7 +26,7 @@ const Sidebar = () => {
 
       {/* Logout Button */}
       <div className="mb-8">
-        <LogoutButton/>
+        <LogoutButton />
       </div>
     </div>
   );

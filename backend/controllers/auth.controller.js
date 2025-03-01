@@ -203,11 +203,11 @@ export const forgotPassword = async (req, res) => {
 }
 
 export const resetPassword = async (req, res) => {
-    
+
     try {
         const { token } = req.params;
         const { password } = req.body;
-    
+
         if (!token) {
             return res.status(400).json({ success: false, message: 'Missing Details' });
         }
