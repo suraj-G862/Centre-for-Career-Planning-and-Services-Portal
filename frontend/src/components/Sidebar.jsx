@@ -9,6 +9,7 @@ const AllLinks = [
   { name: 'Applications', link: '/applications' },
   { name: 'Saved Applications', link: '/saved-applications' },
   { name: 'Analytics', link: '/analytics' },
+  { name: 'Referals', link: '/referals' },
 ];
 
 const Sidebar = () => {
@@ -18,10 +19,10 @@ const Sidebar = () => {
     <>
       <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-[#0fa18e] text-white px-4 flex items-center justify-between z-20 w-screen">
         <Link to="/" className="flex items-center">
-          <img src="./ccps.svg" alt="Logo" className="h-10 w-10" />
+          <img src="/images/CCPS.png" alt="Logo" className="h-10 w-10" />
           <span className="ml-4 text-xl font-montserrat">CCPS</span>
         </Link>
-        <button 
+        <button
           onClick={() => setIsOpen(!isOpen)}
           className="p-2 hover:bg-[#13665b] rounded-lg"
         >
@@ -33,7 +34,7 @@ const Sidebar = () => {
         <div>
           <div className="flex items-center justify-start mt-8 ml-6">
             <Link to="/" className="flex items-center">
-              <img src="./ccps.svg" alt="Logo" className="h-16 w-16" />
+              <img src="/images/CCPS.png" alt="Logo" className="h-10 w-10" />
               <span className="ml-4 text-2xl font-montserrat">CCPS</span>
             </Link>
           </div>
@@ -58,9 +59,8 @@ const Sidebar = () => {
         <div className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-10" onClick={() => setIsOpen(false)} />
       )}
 
-      <div className={`md:hidden fixed top-16 left-0 w-60 bg-[#0fa18e] h-[calc(100vh-4rem)] transform transition-transform duration-300 ease-in-out z-20 ${
-        isOpen ? 'translate-x-0' : '-translate-x-full'
-      }`}>
+      <div className={`md:hidden fixed top-16 left-0 w-60 bg-[#0fa18e] h-[calc(100vh-4rem)] transform transition-transform duration-300 ease-in-out z-20 ${isOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}>
         <nav className="flex flex-col h-full justify-between py-4">
           <div>
             {AllLinks.map((link) => (
