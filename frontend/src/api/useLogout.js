@@ -20,6 +20,7 @@ const useLogout = () => {
         const data = await res.json();
         if(data.error) {throw new Error(data.error);}
         localStorage.removeItem('ccps-user');
+        localStorage.removeItem('ccps-token');
         setAuthUser(null);
     }
     catch(error){

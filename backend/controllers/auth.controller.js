@@ -106,7 +106,7 @@ export const verifyEmail = async (req, res) => {
 
         const newUser = await user.save();
 
-        generateTokenAndSetCookie(newUser._id, res);
+        const token = generateTokenAndSetCookie(newUser._id, res);
 
         const userData = {
             _id: newUser._id,
@@ -115,7 +115,7 @@ export const verifyEmail = async (req, res) => {
             role: newUser.role,
         }
 
-        res.status(201).json({ success: true, message: "Email verified successfully", userData });
+        res.status(201).json({ success: true, message: "Email verified successfully", userData, token });
 
     } catch (e) {
         console.error("Error in verifyEmail controller", e.message);
@@ -141,7 +141,7 @@ export const login = async (req, res) => {
             }
         }
 
-        generateTokenAndSetCookie(user._id, res);
+        const token = generateTokenAndSetCookie(user._id, res);
 
         const userData = {
             _id: user._id,
@@ -150,7 +150,7 @@ export const login = async (req, res) => {
             role: user.role,
         }
 
-        res.status(200).json({ success: true, userData });
+        res.status(200).json({ success: true, userData, token });
 
     } catch (e) {
         console.log("error in login controller", e.message);

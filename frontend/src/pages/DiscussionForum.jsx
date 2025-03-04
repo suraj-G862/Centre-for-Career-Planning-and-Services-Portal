@@ -1,32 +1,45 @@
-import { useEffect } from 'react'
-import Sidebar from '../components/Sidebar';
-import Thread from '../components/Thread';
-import GroupChatSidebar from '../components/GroupChatSidebar';
-import useThreadStore from '../api/useThreadStore';
-import NewThreadInput from '../components/NewThreadInput';
+import { useEffect } from "react";
+import useThreadStore from "../api/useThreadStore";
+import Sidebar from "../components/Sidebar";
+import { useAppContext } from "../context/AppContext";
+import Thread from "../components/Thread";
 
 const DiscussionForum = () => {
-
-  const { loading, getThreads, threads } = useThreadStore();
+  const { setShowAddThread } = useAppContext();
+  const { threads, getThreads } = useThreadStore();
 
   useEffect(() => {
     getThreads();
-  }, [])
+  } , [threads]);
 
   return (
-    <div className="flex">
-      <Sidebar />
+    <>
+      <div className="flex h-screen">
+        <Sidebar />
 
-      <section className='flex flex-col'>
-        {loading ? <p>Loading...</p> :
-          <Thread />
-        }
-        <NewThreadInput />
-      </section>
+        <section className="relative min-h-screen bg-gray-100 flex-1 flex flex-col items-center overflow-y-auto">
+          {/* Threads List */}
+          <div className="w-full max-w-5xl p-4 space-y-3 overflow-y-auto">
+            {[...threads].reverse().map((thread) => (
+              <div key={thread._id} className="p-4 bg-white rounded-lg shadow">
+                <Thread thread={thread} />
+              </div>
+            ))}
+          </div>
 
-      <GroupChatSidebar />
-    </div>
-  )
-}
+          {/* Fixed Add Thread Button */}
+          <div className="fixed bottom-4">
+            <button
+              className="px-6 py-3 bg-blue-500 text-white rounded-lg shadow-lg"
+              onClick={() => setShowAddThread(true)}
+            >
+              + Add Thread
+            </button>
+          </div>
+        </section>
+      </div>
+    </>
+  );
+};
 
-export default DiscussionForum
+export default DiscussionForum;

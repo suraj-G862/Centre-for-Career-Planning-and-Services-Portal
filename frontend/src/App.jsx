@@ -12,15 +12,18 @@ import { useAppContext } from './context/AppContext';
 import ForgotPassword from './components/ForgotPassword';
 import VerifyEmail from './components/VerifyEmail';
 import DiscussionForum from './pages/DiscussionForum';
+import AddThread from './components/AddThread';
 
 function App() {
   const { authUser } = useAuthContext();
-  const {showForgotPassword, showVerifyEmail} = useAppContext();
+  const {showForgotPassword, showVerifyEmail, showAddThread} = useAppContext();
   return (
     <>
 
       {showForgotPassword && <ForgotPassword />}
       {showVerifyEmail && <VerifyEmail />}
+      {showAddThread && <AddThread />}
+      
       
       <Routes>
         <Route path='/' element={authUser ? <Home /> : <Navigate to='/login' />} />

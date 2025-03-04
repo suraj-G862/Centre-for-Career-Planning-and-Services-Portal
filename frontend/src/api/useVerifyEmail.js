@@ -25,6 +25,7 @@ const useVerifyEmail = () => {
             if (!res.ok) throw new Error(data.message);
 
             localStorage.setItem("ccps-user", JSON.stringify(data.userData))
+            localStorage.setItem("ccps-token", data.token)
             setAuthUser(data)
 
             toast.success("Account verified successfully!");

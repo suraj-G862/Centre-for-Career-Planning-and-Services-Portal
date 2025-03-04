@@ -1,5 +1,6 @@
 import Thread from '../models/thread.model.js';
 import cloudinary from '../config/cloudinary.js';
+import Comment from '../models/comment.model.js';
 
 export const getThreads = async (req, res) => {
     try {
