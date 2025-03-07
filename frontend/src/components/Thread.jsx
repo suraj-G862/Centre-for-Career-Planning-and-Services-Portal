@@ -3,7 +3,7 @@ import useThreadStore from '../api/useThreadStore';
 import Comment from './Comment';
 
 const Thread = ({ thread }) => {
-  const { createComment } = useThreadStore();
+  const { createComment, loading } = useThreadStore();
   const [showComments, setShowComments] = useState(false);
   const [newComment, setNewComment] = useState("");
   const [file, setFile] = useState(null);
@@ -93,6 +93,7 @@ const Thread = ({ thread }) => {
               />
               <button
                 type='submit'
+                disabled={loading}
                 className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
               >
                 Submit
