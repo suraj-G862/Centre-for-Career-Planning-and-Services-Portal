@@ -12,7 +12,6 @@ function Signup() {
         confirmPassword: '',
         role: ''
     });
-
     const { loading, signup } = useSignup();
     
     const handleSubmit = async (e) => {
@@ -97,5 +96,3 @@ function Signup() {
 }
 
 export default Signup
-
-

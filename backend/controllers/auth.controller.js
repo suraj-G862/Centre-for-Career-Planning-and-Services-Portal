@@ -7,18 +7,17 @@ dotenv.config({});
 import { sendVerificationEmail, sendPasswordResetEmail, sendPasswordResetSuccessEmail } from "../utils/emails.js";
 
 
+
 export const signup = async (req, res) => {
     try {
         const { name, email, password, role } = req.body;
         const user = await User.findOne({ email });
-
+        
         if (user) {
             return res.status(400).json({ success: false, message: "User already exists" });
-        }
 
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
-
         const verificationToken = Math.floor(100000 + (Math.random() * 900000)).toString();
 
         const userData = {
@@ -109,6 +108,7 @@ export const verifyEmail = async (req, res) => {
         generateTokenAndSetCookie(newUser._id, res);
 
         const userData = {
+
             _id: newUser._id,
             name: newUser.name,
             email: newUser.email,
@@ -121,7 +121,6 @@ export const verifyEmail = async (req, res) => {
         console.error("Error in verifyEmail controller", e.message);
         res.status(500).json({ success: false, error: "Server Error" });
     }
-
 };
 
 
