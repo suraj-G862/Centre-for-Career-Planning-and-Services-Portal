@@ -18,7 +18,15 @@ const userSchema = new mongoose.Schema({
         type:String,
         enum: ["student","recruiter","admin","alumni"],
         required:true
-    }
+    },
+    isVerified: {
+        type: Boolean,
+        default: false
+    },
+    resetPasswordToken : String,
+    resetPasswordTokenExpiresAt: Date,
+    verificationToken: String,
+    verificationTokenExpiresAt: Date,
 })
 
 const User = mongoose.model("User",userSchema);

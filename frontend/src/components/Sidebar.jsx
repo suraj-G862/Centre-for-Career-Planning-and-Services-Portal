@@ -1,16 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
-import LogoutButton from './LogoutButton.jsx';
-
-const AllLinks = [
-  { name: 'Home', link: '/home' },
-  { name: 'Profile', link: '/profile' },
-  { name: 'Applications', link: '/applications' },
-  { name: 'Saved Applications', link: '/saved-applications' },
-  { name: 'Analytics', link: '/analytics' },
-  { name: 'Referals', link: '/referals' },
-];
+import React from 'react';
+import LogoutButton  from './LogoutButton.jsx';
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -80,7 +69,9 @@ const Sidebar = () => {
         </nav>
       </div>
 
-      <div className="md:pl-60 pt-16 md:pt-0">
+      {/* Logout Button */}
+      <div className="mb-8">
+        <LogoutButton/>
       </div>
     </>
   );
