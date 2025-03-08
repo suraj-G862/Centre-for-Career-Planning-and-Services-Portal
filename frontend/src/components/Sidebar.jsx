@@ -1,9 +1,22 @@
-import React from 'react';
-import LogoutButton  from './LogoutButton.jsx';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
+import LogoutButton from './LogoutButton.jsx';
+import { useAuthContext } from '../context/AuthContext';
+
+const AllLinks = [
+  { name: 'Home', link: '/home' , user:"all"},
+  { name: 'Profile', link: '/profile',  user:"all" },
+  { name: 'Applications', link: '/applications' ,  user:"all"},
+  { name: 'Saved Applications', link: '/saved-applications' ,  user:"all" },
+  { name: 'Analytics', link: '/analytics' ,  user:"all" },
+  { name: 'Referals', link: '/referals' ,  user:"all"},
+  { name: 'Resume Builder', link: '/resumebuilder' , user:"student"},
+];
 
 const Sidebar = () => {
+  const { authUser } = useAuthContext();
   const [isOpen, setIsOpen] = useState(false);
-
   return (
     <>
       <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-[#0fa18e] text-white px-4 flex items-center justify-between z-20 w-screen">
@@ -28,15 +41,22 @@ const Sidebar = () => {
             </Link>
           </div>
           <nav className="mt-8">
-            {AllLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.link}
-                className="block text-lg font-montserrat text-white py-3 px-6 hover:bg-[#13665b] transition-colors"
-              >
-                {link.name}
-              </Link>
-            ))}
+            {AllLinks.map((link) => {
+              if(link.user==="all" || link.user===authUser.role){
+                return (
+                  <Link
+                    key={link.name}
+                    to={link.link}
+                    className="block text-lg font-montserrat text-white py-3 px-6 hover:bg-[#13665b] transition-colors duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {link.name}
+                  </Link>
+                )
+              }
+              else{
+                return null;
+              }
+            })}
           </nav>
         </div>
         <div className="mb-8 px-6">
@@ -52,16 +72,23 @@ const Sidebar = () => {
         }`}>
         <nav className="flex flex-col h-full justify-between py-4">
           <div>
-            {AllLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.link}
-                className="block text-lg font-montserrat text-white py-3 px-6 hover:bg-[#13665b] transition-colors duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
-                onClick={() => setIsOpen(false)}
-              >
-                {link.name}
-              </Link>
-            ))}
+            {AllLinks.map((link) => {
+              if(link.user==="all" || link.user===authUser.role){
+                return (
+                  <Link
+                    key={link.name}
+                    to={link.link}
+                    className="block text-lg font-montserrat text-white py-3 px-6 hover:bg-[#13665b] transition-colors duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+                )
+              }
+              else{
+                return null;
+              }
+            })}
           </div>
           <div className="px-6 ">
             <LogoutButton />
