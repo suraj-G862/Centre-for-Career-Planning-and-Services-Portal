@@ -1,14 +1,16 @@
 import { createRoot } from 'react-dom/client'
 import App from './App'
+import React from 'react'
+import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
-import { Routes } from 'react-router-dom'
-import { Route } from 'react-router-dom'
+import {AuthContextProvider} from './context/AuthContext.jsx'
 
 createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />} />
-      
-    </Routes>
-  </BrowserRouter>
+     <React.StrictMode>
+       <BrowserRouter>
+         <AuthContextProvider>
+           <App/>
+         </AuthContextProvider>
+       </BrowserRouter>
+     </React.StrictMode>
 )

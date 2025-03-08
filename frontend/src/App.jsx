@@ -1,24 +1,27 @@
 import React from 'react';
-import Footer from './components/Footer';
-import './index.css'; // Ensure Tailwind CSS is imported
-import SignInForm from './components/SignInForm';
-import Navbar from './components/Navbar';
-import SavedApplications from './pages/Savedapplications';
-import { Route } from 'react-router-dom';
-import Sidebar from './components/Sidebar';
+import './index.css';
+import Dashboard from './pages/Dashboard';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import AnalyticsDashboard from './pages/AnalyticsDashboard';
+import Referrals from './pages/Referrals';
+import {Routes, Route, Navigate } from 'react-router-dom';
+import { useAuthContext } from './context/AuthContext';
+import {Toaster} from 'react-hot-toast' 
 
 function App() {
+  const {authUser} = useAuthContext();
   return (
-    // <Routes>
-    //   <Route path='/' element={<Sidebar/>}></Route>
-    //   <Route path='/saved-applications' element={<SavedApplications/>}></Route>
-    // </Routes>
-    <div>
-      <SavedApplications/>
-      {/* <Navbar/>
-     <SignInForm />
-      <Footer /> */}
-    </div>
+    <>
+      <Routes>
+        <Route path='/' element={ authUser ? <Dashboard/> : <Navigate to='/login' />} />
+        <Route path='/login' element={authUser ? <Navigate to='/' /> : <Login/>}/>
+        <Route path='/signup' element={authUser ? <Navigate to='/' /> : <Signup/>}/>
+        <Route path='/analytics' element={<AnalyticsDashboard/>}/>
+        <Route path='/referals' element={<Referrals/>}/>
+      </Routes>
+      <Toaster/> 
+    </>
   );
 }
 
