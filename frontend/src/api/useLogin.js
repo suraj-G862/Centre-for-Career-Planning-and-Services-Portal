@@ -7,7 +7,6 @@ import { useAppContext } from '../context/AppContext.jsx';
     const [loading, setLoading] = useState(false);
     const {setAuthUser,setTempUserId} = useAuthContext();
     const { backendUrl, setShowVerifyEmail } = useAppContext();
-
     const login = async (email, password) => {
         const success = handleInputError(email, password);
         if(!success) return;
