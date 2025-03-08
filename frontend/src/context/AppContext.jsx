@@ -11,6 +11,7 @@ export const AppContextProvider = ({ children }) => {
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
     const [showForgotPassword, setShowForgotPassword] = useState(false);
     const [showVerifyEmail, setShowVerifyEmail] = useState(false);
+    const [showAddThread, setShowAddThread] = useState(false);
 
-    return <AppContext.Provider value={{ backendUrl, showForgotPassword, setShowForgotPassword, showVerifyEmail, setShowVerifyEmail }}>{children}</AppContext.Provider>;
+    return <AppContext.Provider value={{ backendUrl, showForgotPassword, setShowForgotPassword, showVerifyEmail, setShowVerifyEmail, showAddThread, setShowAddThread }}>{children}</AppContext.Provider>;
 };

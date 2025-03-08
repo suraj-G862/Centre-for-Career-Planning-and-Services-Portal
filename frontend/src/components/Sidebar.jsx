@@ -32,35 +32,13 @@ const Sidebar = () => {
         </button>
       </div>
 
-      <div className="hidden md:flex fixed left-0 top-0 h-screen w-60 bg-[#0fa18e] text-white flex-col justify-between">
-        <div>
-          <div className="flex items-center justify-start mt-8 ml-6">
-            <Link to="/" className="flex items-center">
-              <img src="/images/CCPS.png" alt="Logo" className="h-10 w-10" />
-              <span className="ml-4 text-2xl font-montserrat">CCPS</span>
-            </Link>
-          </div>
-          <nav className="mt-8">
-            {AllLinks.map((link) => {
-              if(link.user==="all" || link.user===authUser.role){
-                return (
-                  <Link
-                    key={link.name}
-                    to={link.link}
-                    className="block text-lg font-montserrat text-white py-3 px-6 hover:bg-[#13665b] transition-colors duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {link.name}
-                  </Link>
-                )
-              }
-              else{
-                return null;
-              }
-            })}
-          </nav>
-        </div>
-        <div className="mb-8 px-6">
-          <LogoutButton />
+        {/* Navigation Links */}
+        <div className="flex flex-col mt-8">
+          <a href="/" className="text-lg font-montserrat text-[#05F2C7] py-3 pl-6 hover:bg-[#03658C]">Home</a>
+          <a href="/dashboard" className="text-lg font-montserrat text-[#05F2C7] py-3 pl-6 hover:bg-[#03658C]">Dashboard</a>
+          <a href="/discussion-forum" className="text-lg font-montserrat text-[#05F2C7] py-3 pl-6 hover:bg-[#03658C]">Discussion Forum</a>
+          <a href="applications" className="text-lg font-montserrat text-[#05F2C7] py-3 pl-6 hover:bg-[#03658C]">Applications</a>
+          <a href="saved-applications" className="text-lg font-montserrat text-[#05F2C7] py-3 pl-6 hover:bg-[#03658C]">Saved Applications</a>
         </div>
       </div>
 
@@ -98,7 +76,7 @@ const Sidebar = () => {
 
       {/* Logout Button */}
       <div className="mb-8">
-        <LogoutButton/>
+        <LogoutButton />
       </div>
     </>
   );
