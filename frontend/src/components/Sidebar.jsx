@@ -96,7 +96,9 @@ const Sidebar = () => {
         </nav>
       </div>
 
-      <div className="md:pl-60 pt-16 md:pt-0">
+      {/* Logout Button */}
+      <div className="mb-8">
+        <LogoutButton/>
       </div>
     </>
   );

@@ -1,16 +1,18 @@
 import {useState} from 'react'
 import toast from 'react-hot-toast'
 import {useAuthContext} from '../context/AuthContext.jsx'
+import { useAppContext } from '../context/AppContext.jsx';
  
  const useLogin = () => {
     const [loading, setLoading] = useState(false);
-    const {setAuthUser} = useAuthContext();
+    const {setAuthUser,setTempUserId} = useAuthContext();
+    const { backendUrl, setShowVerifyEmail } = useAppContext();
     const login = async (email, password) => {
         const success = handleInputError(email, password);
         if(!success) return;
         setLoading(true)
         try{
-            const res = await fetch("http://localhost:3000/api/auth/login",{
+            const res = await fetch(`${backendUrl}/api/auth/login`,{
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -20,10 +22,15 @@ import {useAuthContext} from '../context/AuthContext.jsx'
             })
             const data = await res.json();
             if(!res.ok){
+                if(data.message === "Email is not verified"){
+                    setTempUserId(data.userId);
+                    setShowVerifyEmail(true)
+                }
                 throw new Error(data.message)
             }
-            localStorage.setItem("ccps-user", JSON.stringify(data))
+            localStorage.setItem("ccps-user", JSON.stringify(data.userData))
             setAuthUser(data)
+            toast.success("Login Successful!");
         }
         catch(error){ 
             toast.error(error.message);
