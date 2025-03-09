@@ -40,7 +40,6 @@ const Sidebar = () => {
           <a href="applications" className="text-lg font-montserrat text-[#05F2C7] py-3 pl-6 hover:bg-[#03658C]">Applications</a>
           <a href="saved-applications" className="text-lg font-montserrat text-[#05F2C7] py-3 pl-6 hover:bg-[#03658C]">Saved Applications</a>
         </div>
-      </div>
 
       {isOpen && (
         <div className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-10" onClick={() => setIsOpen(false)} />
