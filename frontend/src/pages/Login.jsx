@@ -3,68 +3,63 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import useLogin from '../api/useLogin.js';
 import { useAppContext } from '../context/AppContext.jsx';
-
 const Login = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const { loading, login } = useLogin();
-
-    const {setShowForgotPassword } = useAppContext();
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        await login(email, password);
-    }
-
-    const clickOnForgotPassword = () => {
-        setShowForgotPassword(true);
-    }
-
-    return (
-        <div className="flex">
-            <h1 className="text-3xl font-semibold text-center">Login CCPS
-            </h1>
-            <form onSubmit={handleSubmit} className='p-10 mt-0'>
-                <div>
-                    <label className="label p-2">
-                        <span className='text-base label-text'>Email</span>
-                    </label>
-                    <input type="text" placeholder="Enter email" className="w-full input input-bordered h-10"
-                        value={email} onChange={(e) => setEmail(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label className="label p-2">
-                        <span className='text-base label-text'>Password</span>
-                    </label>
-                    <input type="password" placeholder="Enter Password" className="w-full input input-bordered h-10"
-                        value={password} onChange={(e) => setPassword(e.target.value)} id='password' />
-                    {/* <div className='flex'>
-                        <input type="checkbox" onClick={()=>showPassword()} className='w-4 h-4 mt-3'/>
-                        <span className='mt-2.5 ml-1 text-sm'>Show Password</span>
-                   </div> */}
-                </div>
-                
-                <div className='mr-2'>
-                    <p onClick={clickOnForgotPassword} className=' text-blue-400 hover:underline hover:text-blue-600 mt-2 inline-block cursor-pointer'>
-                        Forgot Password?
-                    </p>
-                </div>
-
-                <div className=' inline-block mr-2'> Don't have an account? </div>
-                <Link to="/signup" className=' text-blue-400 hover:underline hover:text-blue-600 mt-2 inline-block'>
-                    Sign up
-                </Link>
-                <div>
-                    <button className="btn  btn-block btn-sm mt-2 bg-blue-400 hover:bg-blue-600 text-white"
-                        disabled={loading}
-                    >
-                        {loading ? <span className='loading loading-spinner'></span> : "Login"}
-                    </button>
-                </div>
-            </form>
-        </div>
-    );
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { loading, login } = useLogin();
+  const { setShowForgotPassword } = useAppContext();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await login(email, password);
+  };
+  const clickOnForgotPassword = () => {
+    setShowForgotPassword(true);
+  }
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
+        <h1 className="text-3xl font-semibold text-center text-gray-800 mb-6">Login</h1>
+        <img src="/images/CCPS.png" className='mx-auto' alt="CCPS Logo" />
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-medium mb-2">Email</label>
+            <input
+              type="text"
+              placeholder="Enter email"
+              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-medium mb-2">Password</label>
+            <input
+              type="password"
+              placeholder="Enter Password"
+              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div className='mr-2'>
+            <p onClick={clickOnForgotPassword} className=' text-blue-400 hover:underline hover:text-blue-600 mt-2 inline-block cursor-pointer'>
+              Forgot Password?
+            </p>
+          </div>
+          <div className="text-sm mb-4">
+            <span className="text-gray-600">Don't have an account? </span>
+            <Link to="/signup" className="text-blue-500 hover:underline">Sign up</Link>
+          </div>
+          <button
+            className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition disabled:opacity-50"
+            disabled={loading}
+          >
+            {loading ? <span className="loading loading-spinner"></span> : "Login"}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
 };
 
 export default Login;
